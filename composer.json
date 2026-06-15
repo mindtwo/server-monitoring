@@ -1,0 +1,75 @@
+{
+    "name": "mindtwo/server-monitoring",
+    "description": "Standalone server-level monitoring for the mindtwo monitoring suite: Docker, load and system metrics with cron push and a signed pull endpoint — no host application required.",
+    "keywords": [
+        "mindtwo",
+        "server",
+        "monitoring",
+        "infrastructure"
+    ],
+    "homepage": "https://github.com/mindtwo/server-monitoring",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "mindtwo GmbH",
+            "email": "info@mindtwo.de",
+            "homepage": "https://www.mindtwo.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "mindtwo/base-monitoring": "^1.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13",
+        "pestphp/pest": "^2.34|^3.0|^4.0",
+        "phpstan/phpstan": "^1.11|^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mindtwo\\Monitoring\\Server\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mindtwo\\Monitoring\\Server\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint",
+        "lint": "vendor/bin/pint --test",
+        "test": "vendor/bin/pest",
+        "check": [
+            "@lint",
+            "@analyse",
+            "@test"
+        ],
+        "monitor": "@php bin/monitor"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        }
+    },
+    "repositories": {
+        "base-monitoring": {
+            "type": "path",
+            "url": "../base-monitoring",
+            "options": {
+                "symlink": true
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

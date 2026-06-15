@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Mindtwo\Monitoring\Server\Cli;
+use Mindtwo\Monitoring\Server\MonitorFactory;
+
+require dirname(__DIR__).'/vendor/autoload.php';
+
+/** @var array<int, string> $argv */
+exit((new Cli(MonitorFactory::make()))->run($argv));

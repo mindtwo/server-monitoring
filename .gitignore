@@ -1,0 +1,8 @@
+/vendor/
+/.env
+/.phpunit.cache/
+/phpunit.xml
+/phpstan.neon
+/.phpunit.result.cache
+/coverage/
+.DS_Store
