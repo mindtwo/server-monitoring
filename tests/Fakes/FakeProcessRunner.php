@@ -30,7 +30,7 @@ final class FakeProcessRunner implements ProcessRunner
         return $this->available;
     }
 
-    public function run(array $command, ?int $timeoutSeconds = 15): ProcessResult
+    public function run(array $command, ?int $timeoutSeconds = 15, array $extraPaths = []): ProcessResult
     {
         if ($command !== []) {
             $command[0] = basename($command[0]);
