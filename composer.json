@@ -61,15 +61,6 @@
             "dev-main": "1.x-dev"
         }
     },
-    "repositories": {
-        "base-monitoring": {
-            "type": "path",
-            "url": "../base-monitoring",
-            "options": {
-                "symlink": true
-            }
-        }
-    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
