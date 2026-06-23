@@ -1,3 +1,8 @@
 # mindtwo server monitoring — daily snapshot push at 03:00.
-# Install with: crontab -e   (adjust the path to your installation)
-0 3 * * * /usr/bin/php /opt/mindtwo/server-monitoring/bin/monitor push >> /var/log/mindtwo-monitoring.log 2>&1
+# Install with: crontab -e   (adjust the paths to your installation)
+#
+# Output is appended to storage/monitor.log inside the install directory, which
+# the cron user already owns — no extra setup. Logging to /var/log instead needs
+# a root-created, cron-user-owned file first, otherwise the redirect fails with
+# "Permission denied" and the push never runs.
+0 3 * * * /usr/bin/php /opt/mindtwo/server-monitoring/bin/monitor push >> /opt/mindtwo/server-monitoring/storage/monitor.log 2>&1

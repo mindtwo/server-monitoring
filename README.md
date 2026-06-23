@@ -28,7 +28,16 @@ cp .env.example .env   # add MONITORING_PROJECT_KEY + MONITORING_SECRET
 ### Scheduled push (cron)
 
 ```cron
-0 3 * * * /usr/bin/php /opt/mindtwo/server-monitoring/bin/monitor push >> /var/log/mindtwo-monitoring.log 2>&1
+0 3 * * * /usr/bin/php /opt/mindtwo/server-monitoring/bin/monitor push >> /opt/mindtwo/server-monitoring/storage/monitor.log 2>&1
+```
+
+Output is appended to `storage/monitor.log` inside the install directory, which
+the cron user already owns — no extra setup. To log to `/var/log` instead,
+create the file as root and hand it to the cron user first, otherwise the
+redirect fails with `Permission denied` and the push never runs:
+
+```bash
+sudo install -o "$USER" -g "$USER" -m 0644 /dev/null /var/log/mindtwo-monitoring.log
 ```
 
 See [crontab.example](crontab.example).
